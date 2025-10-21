@@ -63,6 +63,11 @@ public class Libro {
 
     /* Métodos */
     public void mostrarDatos() {
+        System.out.println("ID libro: " + id);
+        System.out.println("Título: " + titulo);
+        System.out.println("Autor: " + autor);
+        System.out.println("ISBN: " + isbn);
+        System.out.print("Estado: ");
         if (estado) {
             System.out.println("DISPONIBLE");
         }
