@@ -3,6 +3,7 @@ package ar.edu.unju.escmi.tp6.principal;
 import java.util.Scanner;
 
 import ar.edu.unju.escmi.tp6.collections.CollectionLibro;
+import ar.edu.unju.escmi.tp6.collections.CollectionUsuario;
 
 public class Principal {
     public static void main(String[] args) {
@@ -29,6 +30,12 @@ public class Principal {
                     break;
                 case 2:
                     // La opción 2 permite registrar un nuevo usuario (alumno o bibliotecario).
+                    System.out.println("Ingrese el id del usuario a buscar: ");
+                    int usuarioId = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
+                    CollectionUsuario.encontrarUsuario(usuarioId); // Se verifica primero que el usuario no exista antes
+                                                                   // de registrarlo
+
                     break;
                 case 3:
                     // La opción 3 permite registrar un préstamo de un libro, se debe verificar que
