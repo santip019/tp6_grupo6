@@ -14,8 +14,12 @@ public class CollectionLibro {
         libros.put(libro.getId(), libro);
     }
 
-    public static Libro buscarLibro(int id) {
-        return libros.get(id);
+    public static Libro buscarLibro(int id) throws ar.edu.unju.escmi.tp6.exceptions.LibroNoEncontradoException {
+        Libro l = libros.get(id);
+        if (l == null) {
+            throw new ar.edu.unju.escmi.tp6.exceptions.LibroNoEncontradoException("Libro con id " + id + " no encontrado");
+        }
+        return l;
     }
 
     public static void mostrarLibros() {
@@ -29,11 +33,6 @@ public class CollectionLibro {
     public static void libroDisponible(int id) {
         try {
             Libro libroPrestamo = CollectionLibro.buscarLibro(id);
-
-            // Si el libro no existe, lanzamos la excepción personalizada
-            if (libroPrestamo == null) {
-                throw new LibroNoEncontradoException();
-            }
 
             // Si el libro existe pero no está disponible
             if (!libroPrestamo.isEstado()) {

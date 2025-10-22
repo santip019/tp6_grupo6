@@ -12,8 +12,12 @@ public class CollectionUsuario {
         usuarios.put(usuario.getId(), usuario);
     }
 
-    public static Usuario buscarUsuario(int id) {
-        return usuarios.get(id);
+    public static Usuario buscarUsuario(int id) throws ar.edu.unju.escmi.tp6.exceptions.UsuarioNoRegistradoException {
+        Usuario u = usuarios.get(id);
+        if (u == null) {
+            throw new ar.edu.unju.escmi.tp6.exceptions.UsuarioNoRegistradoException("Usuario con id " + id + " no registrado");
+        }
+        return u;
     }
 
     public static void mostrarUsuarios() {
