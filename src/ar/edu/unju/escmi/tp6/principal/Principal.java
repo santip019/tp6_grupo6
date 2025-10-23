@@ -17,7 +17,40 @@ import ar.edu.unju.escmi.tp6.utils.FechaUtil;
 
 
 public class Principal {
+    
+    /**
+     * Lee un entero desde el scanner evitando InputMismatchException.
+     * Si el usuario ingresa texto no numérico, muestra un mensaje y vuelve a pedirlo.
+     */
+    private static int readInt(Scanner scanner) {
+        while (true) {
+            String line = scanner.nextLine();
+            try {
+                return Integer.parseInt(line.trim());
+            } catch (NumberFormatException e) {
+                System.out.print("Entrada inválida. Ingrese un número entero: ");
+            }
+        }
+    }
+
+    /**
+     * Lee un byte (por ejemplo para el menú) desde el scanner evitando InputMismatchException.
+     */
+    private static byte readByte(Scanner scanner) {
+        while (true) {
+            String line = scanner.nextLine();
+            try {
+                return Byte.parseByte(line.trim());
+            } catch (NumberFormatException e) {
+                System.out.print("Entrada inválida. Ingrese un número válido (ej: 1): ");
+            }
+        }
+    }
     public static void main(String[] args) {
+        // Precargar datos de prueba
+        CollectionLibro.precargarLibros();
+        CollectionUsuario.precargarUsuarios();
+
         Scanner scanner = new Scanner(System.in);
         byte op;
         
@@ -32,16 +65,14 @@ public class Principal {
             System.out.println("6 - Listar Usuarios");
             System.out.println("7 - Salir");
             System.out.print("Ingrese una opcion: ");
-            op = scanner.nextByte();
-            scanner.nextLine(); // Para limpiar el buffer del scanner
+            op = readByte(scanner);
 
             switch (op) {
                 case 1:
                 // La opción 1 permite agregar un libro nuevo a la biblioteca.
                     System.out.println("Registrar Libro");
                     System.out.print("Ingrese ID del libro: ");
-                    int idLibro = scanner.nextInt();
-                    scanner.nextLine();  // Limpiar buffer
+                    int idLibro = readInt(scanner);
 
                     System.out.print("Ingrese autor: ");
                     String autor = scanner.nextLine();
@@ -63,14 +94,12 @@ public class Principal {
                     System.out.println("1 - Registrar Alumno");
                     System.out.println("2 - Registrar Bibliotecario");
                     System.out.print("Seleccione tipo de usuario: ");
-                    int tipoUsuario = scanner.nextInt();
-                    scanner.nextLine();
+                    int tipoUsuario = readInt(scanner);
 
                     switch (tipoUsuario) {
                         case 1: // Alumno
                             System.out.print("ID: ");
-                            int idAlumno = scanner.nextInt();
-                            scanner.nextLine();
+                            int idAlumno = readInt(scanner);
                             try {
                                 // Verificar si el usuario ya existe usando el mismo procedimiento
                                 CollectionUsuario.buscarUsuario(idAlumno);
@@ -97,8 +126,7 @@ public class Principal {
                             break;
                         case 2: // Bibliotecario
                             System.out.print("ID: ");
-                            int idBibliotecario = scanner.nextInt();
-                            scanner.nextLine();
+                            int idBibliotecario = readInt(scanner);
                             try {
                                 // Verificar si el usuario ya existe usando el mismo procedimiento
                                 CollectionUsuario.buscarUsuario(idBibliotecario);
@@ -115,7 +143,7 @@ public class Principal {
                             System.out.print("Email: ");
                             String emailBiblio = scanner.nextLine();
                             System.out.print("Legajo: ");
-                            int legajo = scanner.nextInt();
+                            int legajo = readInt(scanner);
 
                             Bibliotecario bibliotecario = new Bibliotecario(idBibliotecario, nombreBiblio, apellidoBiblio, emailBiblio, legajo);
                             CollectionUsuario.guardarUsuario(bibliotecario);
@@ -131,22 +159,19 @@ public class Principal {
                     System.out.println("Prestamo de Libro");
                     try {
                         System.out.print("ID del usuario: ");
-                        int idUsuarioPrestamo = scanner.nextInt();
-                        scanner.nextLine();
+                        int idUsuarioPrestamo = readInt(scanner);
                         // Buscar usuario
                         Usuario usuarioPrestamo = CollectionUsuario.buscarUsuario(idUsuarioPrestamo);
                         if (usuarioPrestamo == null) {
                             throw new UsuarioNoRegistradoException();
                         }
                         System.out.println("Ingrese el id del libro a prestar: ");
-                        int libroId = scanner.nextInt();
-                        scanner.nextLine(); // Limpiar el buffer
+                        int libroId = readInt(scanner);
 
                         // Verificar disponibilidad del libro (lanza excepciones si hay problema)
                         CollectionLibro.libroDisponible(libroId);
                         System.out.print("Ingrese el ID del prestamo: ");
-                        int idPrestamo = scanner.nextInt();
-                        scanner.nextLine();
+                        int idPrestamo = readInt(scanner);
                         // Buscar libro para crear el prestamo
                         Libro libroPrestamo = CollectionLibro.buscarLibro(libroId);
 
@@ -171,8 +196,7 @@ public class Principal {
                     System.out.println("Devolucion de Libro");
                      try {
                         System.out.print("Ingrese el ID del prestamo: ");
-                        int id = scanner.nextInt();
-                        scanner.nextLine(); // limpiar buffer
+                        int id = readInt(scanner);
                         Prestamo prestamo = CollectionPrestamo.buscarPrestamo(id);
 
                         if (prestamo == null) {

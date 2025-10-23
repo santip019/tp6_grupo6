@@ -21,6 +21,18 @@ public class CollectionLibro {
         }
         return l;
     }
+    
+    /**
+     * Precarga de libros de ejemplo para evitar tener que ingresarlos manualmente
+     * al iniciar la aplicación.
+     */
+    public static void precargarLibros() {
+        guardarLibro(new Libro(1, "Gabriel García Márquez", "Cien años de soledad", "978-84-376-0494-7", true));
+        guardarLibro(new Libro(2, "J.K. Rowling", "Harry Potter y la piedra filosofal", "978-84-7888-588-7", true));
+        guardarLibro(new Libro(3, "George Orwell", "1984", "978-84-670-1888-5", true));
+        guardarLibro(new Libro(4, "J.R.R. Tolkien", "El señor de los anillos", "978-84-450-0001-1", true));
+        guardarLibro(new Libro(5, "Mario Vargas Llosa", "La ciudad y los perros", "978-84-206-0003-3", true));
+    }
 
     public static void mostrarLibros() {
 
