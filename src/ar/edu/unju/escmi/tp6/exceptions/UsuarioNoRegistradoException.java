@@ -1,7 +1,7 @@
 package ar.edu.unju.escmi.tp6.exceptions;
 
-/* Hereda de Exception para que sea una checked exception */
-public class UsuarioNoRegistradoException extends Exception{
+/* Exception es de tipo unchaked por runtime exception*/
+public class UsuarioNoRegistradoException extends RuntimeException{
     
     /* Constructor por defecto, proporciona un mensaje estándar */
     public UsuarioNoRegistradoException() {

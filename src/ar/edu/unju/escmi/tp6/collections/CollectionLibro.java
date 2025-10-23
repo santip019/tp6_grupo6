@@ -17,7 +17,7 @@ public class CollectionLibro {
     public static Libro buscarLibro(int id) throws ar.edu.unju.escmi.tp6.exceptions.LibroNoEncontradoException {
         Libro l = libros.get(id);
         if (l == null) {
-            throw new ar.edu.unju.escmi.tp6.exceptions.LibroNoEncontradoException("Libro con id " + id + " no encontrado");
+            throw new LibroNoEncontradoException("Libro con id " + id + " no encontrado");
         }
         return l;
     }
