@@ -13,7 +13,7 @@ public class CollectionUsuario {
         usuarios.put(usuario.getId(), usuario);
     }
 
-    public static Usuario buscarUsuario(int id) {
+    public static Usuario buscarUsuario(int id) throws ar.edu.unju.escmi.tp6.exceptions.UsuarioNoRegistradoException {
         Usuario usuario = usuarios.get(id);
         if (usuario == null) {
         throw new UsuarioNoRegistradoException("No existe un usuario con ID: " + id);
