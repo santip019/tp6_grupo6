@@ -37,4 +37,17 @@ public class CollectionUsuario {
         System.out.println(e.getMessage());
     }
 }
+
+    /**
+     * Precarga de usuarios de ejemplo: 3 alumnos y 2 bibliotecarios.
+     */
+    public static void precargarUsuarios() {
+        // Alumnos
+        guardarUsuario(new ar.edu.unju.escmi.tp6.dominio.Alumno(101, "Ana", "Gomez", "ana.gomez@example.com", "A101", "1A"));
+        guardarUsuario(new ar.edu.unju.escmi.tp6.dominio.Alumno(102, "Luis", "Perez", "luis.perez@example.com", "A102", "2B"));
+        guardarUsuario(new ar.edu.unju.escmi.tp6.dominio.Alumno(103, "María", "Lopez", "maria.lopez@example.com", "A103", "3C"));
+        // Bibliotecarios
+        guardarUsuario(new ar.edu.unju.escmi.tp6.dominio.Bibliotecario(201, "Carlos", "Sanchez", "carlos.sanchez@example.com", 5001));
+        guardarUsuario(new ar.edu.unju.escmi.tp6.dominio.Bibliotecario(202, "Lucía", "Martinez", "lucia.martinez@example.com", 5002));
+    }
 }
